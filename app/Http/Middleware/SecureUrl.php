@@ -16,7 +16,7 @@ class SecureUrl
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->secure()) {
+        if (!$request->secure() && app()->environment() !== 'production') {
             return redirect()->secure($request->getRequestUri());
         }
         
