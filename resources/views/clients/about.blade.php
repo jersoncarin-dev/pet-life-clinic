@@ -24,11 +24,11 @@
         <div class="block-content block-content-full">
             <div class="p-sm-4 p-xl-7">
                 <!-- Introduction -->
-                <h2 class="h3"><strong>1.</strong> Service Offered</h2>
+                <h2 class="h3"><strong>1.</strong> SERVICE OFFERED</h2>
                 <div id="faq1" class="mb-5" role="tablist" aria-multiselectable="true">
                     <div class="block block-rounded block-bordered mb-1">
                         <div class="block-header block-header-default" role="tab" id="faq1_h1">
-                            <a class="text-muted" data-toggle="collapse" data-parent="#faq1" href="#faq1_q1" aria-expanded="true" aria-controls="faq1_q1">Vaccination</a>
+                            <a class="text-muted" data-toggle="collapse" data-parent="#faq1" href="#faq1_q1" aria-expanded="true" aria-controls="faq1_q1">VACCINATION</a>
                         </div>
                     </div>
                     <div class="block block-rounded block-bordered mb-1">

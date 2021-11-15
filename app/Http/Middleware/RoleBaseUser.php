@@ -19,6 +19,10 @@ class RoleBaseUser
     {
         $user = Auth::user();
 
+        if($request->routeIs('client.reminders') && ($user->role == 'ADMIN' || $user->role == 'STAFF')) {
+            return redirect()->route('staff.notification');
+        }
+
         foreach($roles as $role) {
             if($user->role === strtoupper($role)) {
                 return $next($request);

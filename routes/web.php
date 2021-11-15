@@ -1,7 +1,9 @@
 <?php
 
+use App\Action\Notification;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ManagementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +37,24 @@ Route::post('/register',[AuthenticationController::class,'register'])
     ->middleware('guest')
     ->name('post-register');
 
+Route::get('/test',function() {
+    Notification::send([
+        'title' => 'Fuck you',
+        'body' => 'Fuck you body',
+        'link' => 'current',
+        'is_read' => true,
+        'notif_bound_time' => now()->diffForHumans()
+    ],[1]);
+});
+
 Route::middleware('auth')->group(function() {
+    Route::post('/notif/read',[AuthenticationController::class,'readNotif'])->name('notif.read');
+    Route::get('/auth-token',[AuthenticationController::class,'token'])->name('auth.token');
     Route::get('/logout',[AuthenticationController::class,'logout'])->name('logout');
     Route::view('/about-us','clients.about')->name('about');
     Route::get('/profile',[AuthenticationController::class,'profile'])->name('profile');
     Route::post('/profile/{type?}',[AuthenticationController::class,'updateProfile'])->name('update.profile');
+
     Route::middleware('role:client')->as('client.')->prefix('my')->group(function() {
         Route::get('dashboard',[ClientController::class,'dashboard'])->name('dashboard');
         Route::get('products',[ClientController::class,'products'])->name('products');
@@ -48,6 +63,21 @@ Route::middleware('auth')->group(function() {
         Route::get('pets',[ClientController::class,'pets'])->name('pets');
         Route::post('pets/add',[ClientController::class,'addPet'])->name('create.pet');
         Route::get('reminders',[ClientController::class,'reminders'])->name('reminders');
+    });
+
+    Route::middleware('role:admin,staff')->as('staff.')->prefix('manage')->group(function() {
+        Route::get('dashboard',[ManagementController::class,'dashboard'])->name('dashboard');
+
+        Route::get('products',[ManagementController::class,'products'])->name('products');
+        Route::post('products/add',[ManagementController::class,'addProduct'])->name('product.add');
+        Route::post('products/edit',[ManagementController::class,'editProduct'])->name('product.edit');
+
+        Route::get('notification',[ManagementController::class,'notification'])->name('notification');
+
+        Route::get('reminders',[ManagementController::class,'reminders'])->name('reminders');
+        Route::post('reminders/send',[ManagementController::class,'sendReminder'])->name('send.reminder');
+
+        Route::get('pets',[ManagementController::class,'pets'])->name('pets');
     });
 
 });

@@ -21,13 +21,13 @@
             <ul class="nav-main">
                 <li class="nav-main-heading">Main</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('client.dashboard') }}">
+                    <a class="nav-main-link" href="{{ route('staff.dashboard') }}">
                         <i class="nav-main-link-icon si si-speedometer"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('client.products') }}">
+                    <a class="nav-main-link" href="{{ route('staff.products') }}">
                         <i class="nav-main-link-icon fa fa-shopping-cart"></i>
                         <span class="nav-main-link-name">Products</span>
                     </a>
@@ -39,15 +39,21 @@
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('client.reminders') }}">
-                        <i class="nav-main-link-icon fa fa-bell"></i>
+                    <a class="nav-main-link" href="{{ route('staff.reminders') }}">
+                        <i class="nav-main-link-icon fa fa-calendar-alt"></i>
                         <span class="nav-main-link-name">Reminders</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('client.pets') }}">
+                    <a class="nav-main-link" href="{{ route('staff.notification') }}">
+                        <i class="nav-main-link-icon fa fa-bell"></i>
+                        <span class="nav-main-link-name">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('staff.pets') }}">
                         <i class="nav-main-link-icon fa fa-dog"></i>
-                        <span class="nav-main-link-name">Pets</span>
+                        <span class="nav-main-link-name">Client Pets</span>
                     </a>
                 </li>
                 <li class="nav-main-item">

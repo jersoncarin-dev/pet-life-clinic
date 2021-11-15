@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
+use App\Models\Reminder;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Pusher\PushNotifications\PushNotifications;
 
 class AuthenticationController extends Controller
 {
@@ -18,7 +20,7 @@ class AuthenticationController extends Controller
         if(Auth::attempt($request->only(['email','password']),$request->has('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->route('client.dashboard');
+            return redirect()->route('auth');
         }
 
         return back()->withError('Invalid credentials provided.');
@@ -26,7 +28,17 @@ class AuthenticationController extends Controller
 
     public function auth()
     {
-        return 'hello world';
+        $role = Auth::user()->role;
+
+        if($role == 'CLIENT') {
+            return redirect()->route('client.dashboard');
+        }
+
+        if($role == 'ADMIN' || $role == 'STAFF') {
+            return redirect()->route('staff.dashboard');
+        }
+
+        return abort(404);
     }
 
     public function logout()
@@ -159,5 +171,25 @@ class AuthenticationController extends Controller
 
             return back();
         }
+    }
+
+    public function token(Request $request, PushNotifications $beamsClient)
+    {
+        $userID = "user_id_".$request->user()->id;
+        $userIDInQueryParam = $request->user_id;
+
+        if ($userID != $userIDInQueryParam) {
+            return response('Authentication request error', 401);
+        } else {
+            $beamsToken = $beamsClient->generateToken($userID);
+            return response()->json($beamsToken);
+        }
+    }
+
+    public function readNotif()
+    {
+        Reminder::query()->update([
+            'is_read' => true
+        ]);
     }
 }
