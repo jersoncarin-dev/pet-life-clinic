@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Trait\SearchableTrait;
+use App\Traits\SearchableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
