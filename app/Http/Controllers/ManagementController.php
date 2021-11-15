@@ -276,7 +276,8 @@ class ManagementController extends Controller
         return view('staff.clients',[
             'title' => 'CLIENTS',
             'type' => 'Client',
-            'users' => User::search($request->q)
+            'users' => User::with('detail')
+                ->search($request->q)
                 ->where('role','CLIENT')
                 ->latest()
                 ->paginate()
@@ -288,7 +289,8 @@ class ManagementController extends Controller
         return view('staff.admin',[
             'title' => 'ADMINS',
             'type' => 'Admin',
-            'users' => User::search($request->q)
+            'users' => User::with('detail')
+                ->search($request->q)
                 ->where('role','ADMIN')
                 ->latest()
                 ->paginate()
@@ -300,7 +302,8 @@ class ManagementController extends Controller
         return view('staff.staff',[
             'title' => 'STAFFS',
             'type' => 'Staff',
-            'users' => User::search($request->q)
+            'users' => User::with('detail')
+                ->search($request->q)
                 ->where('role','STAFF')
                 ->latest()
                 ->paginate()
@@ -363,6 +366,7 @@ class ManagementController extends Controller
         return view('staff.archive',[
             'title' => 'List Appointments',
             'appointments' => Appointment::withTrashed()
+                ->with('owner')
                 ->search($request->q)
                 ->latest('date')
                 ->paginate()
