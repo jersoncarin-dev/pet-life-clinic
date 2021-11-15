@@ -316,7 +316,6 @@ class ManagementController extends Controller
             'title' => 'APPOINTMENTS',
             'events' => Appointment::with('owner')
                 ->latest('date')
-                ->withTrashed()
                 ->get()
                 ->map(function($appointment) {
                     return [
