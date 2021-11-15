@@ -17,10 +17,12 @@
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
     @laravelPWA
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     @auth
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
 
     <script>
         const pusher = new Pusher('2fffda7cc8a67f821c96', {

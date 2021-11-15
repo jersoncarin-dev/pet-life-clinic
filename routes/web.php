@@ -71,6 +71,8 @@ Route::middleware('auth')->group(function() {
         Route::get('dashboard',[ManagementController::class,'dashboard'])->name('dashboard');
 
         Route::get('appointments',[ManagementController::class,'appointments'])->name('appointments');
+        Route::post('appointments/approve',[ManagementController::class,'approveAppointments'])
+            ->name('appointment.approve');
 
         Route::get('products',[ManagementController::class,'products'])->name('products');
         Route::post('products/add',[ManagementController::class,'addProduct'])->name('product.add');

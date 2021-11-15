@@ -308,6 +308,44 @@ class ManagementController extends Controller
 
     public function appointments()
     {
-        return 'Underconstruction';
+        return view('staff.appointments',[
+            'title' => 'APPOINTMENTS',
+            'events' => Appointment::latest()
+                ->get()
+                ->map(function($appointment) {
+                    return [
+                        'id' => $appointment->id,
+                        'title' => $appointment->purpose,
+                        'start' => $appointment->date,
+                        'purpose' => $appointment->purpose,
+                        'is_approved' => $appointment->is_approved,
+                        'className' => $appointment->is_approved ? ['bg-success','text-white'] : ''
+                    ];
+                })
+                ->toArray()
+        ]);
+    }
+
+    public function approveAppointments(Request $request)
+    {
+        if(!$appointment = Appointment::find($request->id)) {
+            return abort(404);
+        }
+
+        $approve = $request->has('approve');
+
+        $appointment->update([
+            'is_approved' => $approve
+        ]);
+
+        Notification::send([
+            'title' => 'New appointment alert',
+            'body' => "Appointment [{$appointment->date}] has been ".($approve ? 'Approved' : 'Rejected'),
+            'link' => route('client.reminders'),
+            'is_read' => false,
+            'notif_bound_time' => now()->diffForHumans()
+        ],[$appointment->user_id]);
+
+        return back();
     }
 }
