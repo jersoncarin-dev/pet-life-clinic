@@ -54,6 +54,12 @@
                     </a>
                 </li>
                 <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('staff.reports') }}">
+                        <i class="nav-main-link-icon fa fa-file"></i>
+                        <span class="nav-main-link-name">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
                     <a class="nav-main-link" href="{{ route('staff.notification') }}">
                         <i class="nav-main-link-icon fa fa-bell"></i>
                         <span class="nav-main-link-name">Notifications</span>

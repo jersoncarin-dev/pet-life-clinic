@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Reminder;
 use App\Models\User;
 use App\Models\UserDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -391,5 +392,50 @@ class ManagementController extends Controller
         ],[$appointment->user_id]);
 
         return back();
+    }
+
+    public function reports()
+    {
+        $appointments = Appointment::latest()->get();
+
+        $data = $appointments->groupBy(function($item) {
+            return Carbon::parse($item->date)->format('M Y');
+        })->withSortKeys(function($a, $b){
+            $a = strtotime($a);
+            $b = strtotime($b);
+            return $a - $b;
+        })->map(function($item) {
+            return [
+                'approved' => $item->where('is_approved',true)->count(),
+                'pending' => $item->where('is_approved',false)->count(),
+                'rejected' => $item->where('deleted_at','!=','null')->count()
+            ];
+        });
+        
+        $approved = collect($data)->map(function($item) {
+            return $item['approved'];
+        })
+        ->values()
+        ->toArray();
+
+        $rejected = collect($data)->map(function($item) {
+            return $item['rejected'];
+        })
+        ->values()
+        ->toArray();
+
+        $pendings = collect($data)->map(function($item) {
+            return $item['pending'];
+        })
+        ->values()
+        ->toArray();
+
+        return view('staff.reports',[
+            'labels' => json_encode($data->keys()->toArray()),
+            'approved' => json_encode($approved),
+            'rejected' => json_encode($rejected),
+            'pendings' => json_encode($pendings),
+            'title' => 'REPORTS'
+        ]);
     }
 }
