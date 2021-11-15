@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\Notification;
 use App\Models\Appointment;
 use App\Models\Pet;
 use App\Models\Product;
 use App\Models\Reminder;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +38,18 @@ class ClientController extends Controller
     {
         if($request->has('action') && $request->action == 'cancel') {
             if($appointment = Appointment::find($request->id)) {
+                Notification::send([
+                    'title' => 'Appointment cancelled',
+                    'body' => "Newly appointment has been cancelled.",
+                    'link' => route('staff.notification'),
+                    'is_read' => false,
+                    'notif_bound_time' => now()->diffForHumans()
+                ],User::where('role','ADMIN')
+                    ->orWhere('role','STAFF')
+                    ->get()
+                    ->map(fn($user) => $user->id)
+                    ->toArray());
+
                 $appointment->delete();
 
                 return redirect()->route('client.appointments');
@@ -59,6 +73,18 @@ class ClientController extends Controller
             'purpose' => $request->purpose,
             'date' => $request->date
         ]);
+
+        Notification::send([
+            'title' => 'Appointment created',
+            'body' => "Newly appointment has been created.",
+            'link' => route('staff.notification'),
+            'is_read' => false,
+            'notif_bound_time' => now()->diffForHumans()
+        ],User::where('role','ADMIN')
+            ->orWhere('role','STAFF')
+            ->get()
+            ->map(fn($user) => $user->id)
+            ->toArray());
 
         return back();
     }

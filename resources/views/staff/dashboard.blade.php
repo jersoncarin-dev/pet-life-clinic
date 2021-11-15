@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="{{ route('client.products') }}">
+                    <a class="font-w500 d-flex align-items-center" href="{{ route('staff.products') }}">
                         View all products
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
                     </a>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="{{ route('client.reminders') }}">
+                    <a class="font-w500 d-flex align-items-center" href="{{ route('staff.reminders') }}">
                         View all reminders
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
                     </a>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="{{ route('client.pets') }}">
+                    <a class="font-w500 d-flex align-items-center" href="{{ route('staff.pets') }}">
                         View all pets
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
                     </a>

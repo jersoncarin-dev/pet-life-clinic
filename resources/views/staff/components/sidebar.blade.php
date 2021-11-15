@@ -51,23 +51,38 @@
                     </a>
                 </li>
                 <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('staff.clients') }}">
+                        <i class="nav-main-link-icon fa fa-users"></i>
+                        <span class="nav-main-link-name">Clients</span>
+                    </a>
+                </li>
+                @if(auth()->user()->role == 'ADMIN')
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('staff.staffs') }}">
+                        <i class="nav-main-link-icon fa fa-phone"></i>
+                        <span class="nav-main-link-name">Staffs</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('staff.admins') }}">
+                        <i class="nav-main-link-icon fa fa-bolt"></i>
+                        <span class="nav-main-link-name">Admins</span>
+                    </a>
+                </li>
+                @endif
+                <li class="nav-main-item">
                     <a class="nav-main-link" href="{{ route('staff.pets') }}">
                         <i class="nav-main-link-icon fa fa-dog"></i>
                         <span class="nav-main-link-name">Client Pets</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('profile.staff') }}">
+                    <a class="nav-main-link" href="{{ route('staff.profile') }}">
                         <i class="nav-main-link-icon fa fa-user"></i>
                         <span class="nav-main-link-name">Profile</span>
                     </a>
                 </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('about') }}">
-                        <i class="nav-main-link-icon fa fa-info-circle"></i>
-                        <span class="nav-main-link-name">About us</span>
-                    </a>
-                </li>
+                
             </ul>
         </div>
         <!-- END Side Navigation -->

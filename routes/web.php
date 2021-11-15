@@ -53,7 +53,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/logout',[AuthenticationController::class,'logout'])->name('logout');
     Route::view('/about-us','clients.about')->name('about');
     Route::get('/profile',[AuthenticationController::class,'profile'])->name('profile');
-    Route::get('/profile/staff',[AuthenticationController::class,'profileStaff'])->name('profile.staff');
     Route::post('/profile/{type?}',[AuthenticationController::class,'updateProfile'])->name('update.profile');
 
     Route::middleware('role:client')->as('client.')->prefix('my')->group(function() {
@@ -67,7 +66,11 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::middleware('role:admin,staff')->as('staff.')->prefix('manage')->group(function() {
+        Route::get('profile',[AuthenticationController::class,'profileStaff'])->name('profile');
+
         Route::get('dashboard',[ManagementController::class,'dashboard'])->name('dashboard');
+
+        Route::get('appointments',[ManagementController::class,'appointments'])->name('appointments');
 
         Route::get('products',[ManagementController::class,'products'])->name('products');
         Route::post('products/add',[ManagementController::class,'addProduct'])->name('product.add');
@@ -79,6 +82,14 @@ Route::middleware('auth')->group(function() {
         Route::post('reminders/send',[ManagementController::class,'sendReminder'])->name('send.reminder');
 
         Route::get('pets',[ManagementController::class,'pets'])->name('pets');
+
+        Route::get('clients',[ManagementController::class,'clients'])->name('clients');
+        Route::get('admins',[ManagementController::class,'admins'])->name('admins');
+        Route::get('staffs',[ManagementController::class,'staffs'])->name('staffs');
+
+        Route::get('user/delete',[ManagementController::class,'deleteUser'])->name('user.delete');
+        Route::post('user/add',[ManagementController::class,'addUser'])->name('user.add');
+        Route::post('user/edit',[ManagementController::class,'editUser'])->name('user.edit');
     });
 
 });

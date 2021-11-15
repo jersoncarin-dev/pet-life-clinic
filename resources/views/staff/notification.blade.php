@@ -51,7 +51,6 @@
                 <table class="table table-borderless table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 120px;">Notification</th>
                             <th class="d-none d-sm-table-cell">Title</th>
                             <th class="d-none d-xl-table-cell">Body</th>
                             <th class="d-none d-xl-table-cell text-left">Read</th>
@@ -61,11 +60,6 @@
                     <tbody>
                         @foreach($reminders as $reminder)
                             <tr>
-                                <td class="text-center font-size-sm">
-                                    <a class="font-w600" href="javascript:void(0)">
-                                        <strong>NFT.00{{ $reminder->id }}</strong>
-                                    </a>
-                                </td>
                                 <td class="d-none d-xl-table-cell font-size-sm">
                                     <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-success-light text-success">{{ $reminder->title }}</span>
                                 </td>

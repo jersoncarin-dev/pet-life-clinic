@@ -51,7 +51,6 @@
                 <table class="table table-borderless table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 120px;">Reminder</th>
                             <th class="d-none d-sm-table-cell text-center">Client Name</th>
                             <th class="d-none d-xl-table-cell text-center">Contact Number</th>
                             <th class="d-none d-xl-table-cell text-center">Address</th>
@@ -61,18 +60,13 @@
                     <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td class="text-center font-size-sm">
-                                    <a class="font-w600" href="javascript:void(0)">
-                                        <strong>RMD.00{{ $user->id }}</strong>
-                                    </a>
-                                </td>
                                 <td class="d-none d-xl-table-cell font-size-sm text-center">
                                     <span class="font-size-sm font-w600 px-2 py-1 rounded bg-success-light text-success">{{ $user->name }}</span>
                                 </td>
                                 <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted text-center">{{ $user->detail->contact_number }}</td>
                                 <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted text-center">{{ $user->detail->address }}</td>
                                 <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted text-center">
-                                    <a class="font-size-sm font-w600 px-2 py-1 rounded bg-success text-white" data-id="{{ $user->id }}" href="#" id="send">Send</a>
+                                    <a class="font-size-sm font-w600 px-2 py-1 rounded bg-success text-white send" data-id="{{ $user->id }}" href="#">Send</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -119,7 +113,7 @@
 </div>
 @section('script')
 <script>
-    $('#send').click(function() {
+    $('.send').click(function() {
         const id = $(this).data('id')
         $('#add-reminder').modal('show')
         $('#id').val(id)

@@ -31,7 +31,7 @@
         </div>
         <div id="one-dashboard-search-orders" class="block-content border-bottom {{ request()->has('q') ? '' : 'd-none' }}">
             <!-- Search Form -->
-            <form action="{{ route('client.pets') }}" method="GET">
+            <form action="{{ route('staff.pets') }}" method="GET">
                 <div class="form-group push">
                     <div class="input-group">
                         <input type="text" class="form-control" id="one-ecom-orders-search" value="{{ request()->q }}" name="q" placeholder="Search pets..">
@@ -51,7 +51,6 @@
                 <table class="table table-borderless table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="d-none d-sm-table-cell text-center">Pet</th>
                             <th class="d-none d-sm-table-cell text-center">Name</th>
                             <th class="d-none d-xl-table-cell text-center">Category</th>
                             <th class="d-none d-sm-table-cell text-center">Owner</th>
@@ -60,11 +59,6 @@
                     <tbody>
                         @foreach($pets as $pet)
                             <tr>
-                                <td class="text-center font-size-sm">
-                                    <a class="font-w600" href="javascript:void(0)">
-                                        <strong>PET.00{{ $pet->id }}</strong>
-                                    </a>
-                                </td>
                                 <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted text-center">{{ $pet->name }}</td>
                                 <td class="d-none d-xl-table-cell font-size-sm text-center">
                                     <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-success-light text-success">{{ $pet->category }}</span>

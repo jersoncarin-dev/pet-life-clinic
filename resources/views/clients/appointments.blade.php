@@ -54,7 +54,6 @@
                 <table class="table table-borderless table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 160px;">Appointment</th>
                             <th class="d-none d-sm-table-cell">Purpose</th>
                             <th class="d-none d-xl-table-cell" style="width: 120px;">Notes</th>
                             <th class="d-none d-xl-table-cell" style="width: 120px;">Approved</th>
@@ -65,11 +64,6 @@
                     <tbody>
                         @foreach($appointments as $appointment)
                         <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>APM.00{{ $appointment->id }}</strong>
-                                </a>
-                            </td>
                             <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">{{ $appointment->purpose }}</td>
                             <td class="d-none d-sm-table-cell text-left">
                                 <a class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark" href="#" onclick="viewNote(`{{ $appointment->note ?? 'No Doctor notes.' }}`)">View note</a>

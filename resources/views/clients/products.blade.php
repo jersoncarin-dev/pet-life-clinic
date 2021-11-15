@@ -51,7 +51,6 @@
                 <table class="table table-borderless table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 120px;">Product</th>
                             <th class="d-none d-sm-table-cell">Name</th>
                             <th class="d-none d-xl-table-cell">Category</th>
                             <th>Available</th>
@@ -63,11 +62,6 @@
                     <tbody>
                         @foreach($products as $product)
                             <tr>
-                                <td class="text-center font-size-sm">
-                                    <a class="font-w600" href="javascript:void(0)">
-                                        <strong>PRD.00{{ $product->id }}</strong>
-                                    </a>
-                                </td>
                                 <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">{{ $product->name }}</td>
                                 <td class="d-none d-xl-table-cell font-size-sm">
                                     <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-success-light text-success">{{ $product->type }}</span>
