@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/logout',[AuthenticationController::class,'logout'])->name('logout');
     Route::view('/about-us','clients.about')->name('about');
     Route::get('/profile',[AuthenticationController::class,'profile'])->name('profile');
+    Route::get('/profile/staff',[AuthenticationController::class,'profileStaff'])->name('profile.staff');
     Route::post('/profile/{type?}',[AuthenticationController::class,'updateProfile'])->name('update.profile');
 
     Route::middleware('role:client')->as('client.')->prefix('my')->group(function() {

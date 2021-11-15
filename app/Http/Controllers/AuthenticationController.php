@@ -115,6 +115,13 @@ class AuthenticationController extends Controller
         ]);
     }
 
+    public function profileStaff()
+    {
+        return view('staff.profile',[
+            'title' => 'MY PROFILE'
+        ]);
+    }
+
     public function updateProfile(Request $request)
     {
         if($request->type === 'basic') {

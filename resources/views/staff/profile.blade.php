@@ -1,4 +1,4 @@
-@extends('components.html')
+@extends('staff.components.html')
 @section('content')
 <!-- Hero -->
 <div class="bg-image" style="background-image: url('/assets/media/photos/photo8@2x.jpg');">
