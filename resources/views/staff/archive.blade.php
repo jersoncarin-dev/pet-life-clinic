@@ -51,11 +51,11 @@
                 <table class="table table-borderless table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="d-none d-sm-table-cell text-left">Owner</th>
+                            <th class="d-none d-sm-table-cell text-left" style="width: 200px">Owner</th>
                             <th class="d-none d-xl-table-cell text-left" style="width: 500px">Purpose</th>
-                            <th class="d-none d-xl-table-cell text-left">Status</th>
-                            <th class="d-none d-xl-table-cell text-left">Date</th>
-                            <th class="d-none d-xl-table-cell text-left">Action</th>
+                            <th class="d-none d-xl-table-cell text-left" style="width: 200px">Status</th>
+                            <th class="d-none d-xl-table-cell text-left" style="width: 200px">Date</th>
+                            <th class="d-none d-xl-table-cell text-left" style="width: 200px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +71,7 @@
                                 <td class="d-none d-xl-table-cell font-size-sm text-left">
                                     <span class="font-size-sm font-w600 px-2 py-1 rounded bg-info text-white">{{ \Carbon\Carbon::parse($appointment->date)->diffForHumans() }}</span>
                                 </td>
-                                <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted text-left">
+                                <td class="d-none d-sm-table-cell font-size-sm font-size-sm text-muted text-left">
                                     <a class="font-size-sm font-w600 px-2 py-1 rounded bg-success text-white add-note" data-id="{{ $appointment->id }}" href="#">Add note</a>
                                 </td>
                             </tr>
