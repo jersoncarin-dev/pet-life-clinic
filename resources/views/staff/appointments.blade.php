@@ -38,7 +38,8 @@
                     @csrf
                     <input type="hidden" id="id" name="id">
                     <div class="block-content font-size-sm">
-                        <p id="text-ap"></p>
+                        <p>Owner name: <span id="text-owner"></span></p>
+                        <p>Purpose: <span id="text-ap"></span></p>
                         <p id="text">Status: <span class="rounded text-white px-2 py-1" id="status"></span></p>
                     </div>
                     <div class="block-content block-content-full text-right border-top d-flex ">
@@ -62,11 +63,12 @@
             eventClick: function(info) {
                 $('#show-ap').modal('show')
                 $('#text-ap').text(info.event.extendedProps.purpose)
-                $('#status').text(Boolean(info.event.extendedProps.is_approved) ? 'Approved' : 'Pending')
-                $('#status').addClass(Boolean(info.event.extendedProps.is_approved) ? 'bg-success' : 'bg-primary')
+                $('#text-owner').text(info.event.extendedProps.owner)
+                $('#status').text(Boolean(info.event.extendedProps.is_approved) ? 'Approved' : (Boolean(info.event.extendedProps.is_trashed) ? 'Rejected' : 'Pending'))
+                $('#status').addClass(Boolean(info.event.extendedProps.is_approved) ? 'bg-success' : (Boolean(info.event.extendedProps.is_trashed) ? 'bg-danger' : 'bg-primary'))
                 $('#id').val(info.event.id)
 
-                if(Boolean(info.event.extendedProps.is_approved)) {
+                if(Boolean(info.event.extendedProps.is_approved) || Boolean(info.event.extendedProps.is_trashed)) {
                     $('.shouldHidden').hide(100)
                 } else {
                     $('.shouldHidden').show(100)

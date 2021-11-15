@@ -66,7 +66,7 @@
                         <tr>
                             <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">{{ $appointment->purpose }}</td>
                             <td class="d-none d-sm-table-cell text-left">
-                                <a class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark" href="#" onclick="viewNote(`{{ $appointment->note ?? 'No Doctor notes.' }}`)">View note</a>
+                                <a class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark" href="#" onclick="viewNote(`{{ $appointment->notes ?? 'No Doctor notes.' }}`)">View note</a>
                             </td>
                             @if($appointment->is_approved)
                             <td class="d-none d-sm-table-cell text-center">

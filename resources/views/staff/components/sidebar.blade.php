@@ -1,14 +1,17 @@
 <nav id="sidebar" aria-label="Main Navigation">
     <!-- Side Header -->
     <div class="content-header bg-white-5">
-        <!-- Logo -->
-        <a class="font-w600 text-dual" href="/">
+         <!-- Logo -->
+         <a class="font-w600 text-dual" href="/">
             <span class="smini-visible">
                 <i class="fa fa-circle-notch text-primary"></i>
             </span>
             <span class="smini-hide font-size-h5 tracking-wider">
-                PET'S<span class="font-w400">LIFE</span>
+                <img class="rounded-circle" src="/assets/media/icons/icon-48x48.png"> PET'S<span class="font-w400">LIFE</span>
             </span>
+        </a>
+        <a class="d-lg-none btn btn-sm btn-dual ml-1" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+            <i class="fa fa-fw fa-times"></i>
         </a>
         <!-- END Logo -->
     </div>
@@ -33,9 +36,15 @@
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('client.appointments') }}">
+                    <a class="nav-main-link" href="{{ route('staff.appointments') }}">
                         <i class="nav-main-link-icon fa fa-calendar"></i>
                         <span class="nav-main-link-name">Appointments</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('staff.appointments.list') }}">
+                        <i class="nav-main-link-icon fa fa-list"></i>
+                        <span class="nav-main-link-name">List Appointments</span>
                     </a>
                 </li>
                 <li class="nav-main-item">

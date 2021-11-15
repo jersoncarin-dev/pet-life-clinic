@@ -11,15 +11,6 @@ class Notification
 
   public static function send($message, $users = [])
   {
-    foreach($users as $user) {
-      Reminder::create([
-        'title' => $message['title'],
-        'body' => $message['body'],
-        'link' => $message['link'],
-        'user_id' => $user
-      ]);
-    }
-
     event(new NotificationEvent(json_encode($message), $users));
 
     app(PushNotifications::class)->publishToUsers(
@@ -33,5 +24,15 @@ class Notification
         )
       )
     );
+
+    foreach($users as $user) {
+      Reminder::create([
+        'title' => $message['title'],
+        'body' => $message['body'],
+        'link' => $message['link'],
+        'user_id' => $user
+      ]);
+    }
+    
   }
 }

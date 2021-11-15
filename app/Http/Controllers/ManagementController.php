@@ -22,7 +22,7 @@ class ManagementController extends Controller
             'title' => 'DASHBOARD',
             'products_count' => Product::count(),
             'appointments_count' => Appointment::count(),
-            'reminders_count' => Reminder::count(),
+            'notifications_count' => Reminder::selectRaw('count(body) as c')->groupBy('created_at')->get()->count(),
             'pets_count' => Pet::count()
         ]);
     }
@@ -57,6 +57,7 @@ class ManagementController extends Controller
         return view('staff.notification',[
             'title' => 'Notification',
             'reminders' => Reminder::search($request->q)
+                ->groupBy('created_at')
                 ->latest()
                 ->paginate()
         ]);
@@ -310,16 +311,20 @@ class ManagementController extends Controller
     {
         return view('staff.appointments',[
             'title' => 'APPOINTMENTS',
-            'events' => Appointment::latest()
+            'events' => Appointment::with('owner')
+                ->latest('date')
+                ->withTrashed()
                 ->get()
                 ->map(function($appointment) {
                     return [
                         'id' => $appointment->id,
-                        'title' => $appointment->purpose,
+                        'title' => '('.$appointment->owner->name.')'.$appointment->purpose,
                         'start' => $appointment->date,
                         'purpose' => $appointment->purpose,
                         'is_approved' => $appointment->is_approved,
-                        'className' => $appointment->is_approved ? ['bg-success','text-white'] : ''
+                        'is_trashed' => $appointment->trashed(),
+                        'owner' => $appointment->owner->name,
+                        'className' => $appointment->is_approved ? ['bg-success','text-white'] : ($appointment->trashed() ? ['bg-danger','text-white'] : '')
                     ];
                 })
                 ->toArray()
@@ -338,9 +343,45 @@ class ManagementController extends Controller
             'is_approved' => $approve
         ]);
 
+        if(!$approve) {
+            $appointment->delete();
+        }
+
         Notification::send([
             'title' => 'New appointment alert',
             'body' => "Appointment [{$appointment->date}] has been ".($approve ? 'Approved' : 'Rejected'),
+            'link' => route('client.reminders'),
+            'is_read' => false,
+            'notif_bound_time' => now()->diffForHumans()
+        ],[$appointment->user_id]);
+
+        return back();
+    }
+
+    public function listAppointments(Request $request)
+    {
+        return view('staff.archive',[
+            'title' => 'List Appointments',
+            'appointments' => Appointment::withTrashed()
+                ->search($request->q)
+                ->latest('date')
+                ->paginate()
+        ]);
+    }
+
+    public function addNoteAppointments(Request $request)
+    {
+        if(!$appointment = Appointment::find($request->id)) {
+            return abort(404);
+        }
+
+        $appointment->update([
+            'notes' => $request->note
+        ]);
+
+        Notification::send([
+            'title' => 'Appointment has been noted',
+            'body' => "You're appointment has been noted by the staff.",
             'link' => route('client.reminders'),
             'is_read' => false,
             'notif_bound_time' => now()->diffForHumans()

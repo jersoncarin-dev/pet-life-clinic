@@ -14,4 +14,9 @@ class Appointment extends Model
     public $guarded = [];
 
     protected $dates = ['deleted_at'];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

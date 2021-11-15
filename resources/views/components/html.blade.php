@@ -1,8 +1,15 @@
 <!doctype html>
 <html lang="en">
 @include('components.head')
-<body>
+<style>
+    .bg-auth {
+        background-image: url('/assets/media/background.jpg');
+        background-repeat: no-repeat;
+    }
+</style>
+    
     @hasSection('auth')
+    <body class="bg-auth">
         <div id="page-container">
     @endif
     

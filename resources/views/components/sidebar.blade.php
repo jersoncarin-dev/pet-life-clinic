@@ -7,8 +7,11 @@
                 <i class="fa fa-circle-notch text-primary"></i>
             </span>
             <span class="smini-hide font-size-h5 tracking-wider">
-                PET'S<span class="font-w400">LIFE</span>
+                <img class="rounded-circle" src="/assets/media/icons/icon-48x48.png"> PET'S<span class="font-w400">LIFE</span>
             </span>
+        </a>
+        <a class="d-lg-none btn btn-sm btn-dual ml-1" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+            <i class="fa fa-fw fa-times"></i>
         </a>
         <!-- END Logo -->
     </div>
@@ -71,5 +74,7 @@
 <!-- END Sidebar -->
 
 <script>
-   const navs=document.querySelectorAll(".nav-main > .nav-main-item > a"),currentUrl=window.location.href.split(/[?#]/)[0];for(nav of navs)nav.getAttribute("href")===currentUrl&&nav.classList.add("active");
+    const navs = document.querySelectorAll(".nav-main > .nav-main-item > a"),
+        currentUrl = window.location.href.split(/[?#]/)[0];
+    for (nav of navs) nav.getAttribute("href") === currentUrl && nav.classList.add("active");
 </script>

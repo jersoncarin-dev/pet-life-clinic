@@ -74,6 +74,9 @@ Route::middleware('auth')->group(function() {
         Route::post('appointments/approve',[ManagementController::class,'approveAppointments'])
             ->name('appointment.approve');
 
+        Route::get('appointments/list',[ManagementController::class,'listAppointments'])->name('appointments.list');
+        Route::post('appointments/add/note',[ManagementController::class,'addNoteAppointments'])->name('appointments.note');
+
         Route::get('products',[ManagementController::class,'products'])->name('products');
         Route::post('products/add',[ManagementController::class,'addProduct'])->name('product.add');
         Route::post('products/edit',[ManagementController::class,'editProduct'])->name('product.edit');

@@ -23,6 +23,12 @@
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
+    <style>
+        .fc-event-title {
+            white-space: normal !important;
+            margin: 5px;
+        }
+    </style>
 
     <script>
         const pusher = new Pusher('2fffda7cc8a67f821c96', {
@@ -53,12 +59,11 @@
             try {
                 const audio = new Audio('/sound/notif.mp3')
                 audio.play()
-            } catch(error) {
+            } catch (error) {
                 console.log(error)
             }
-          
+
         });
-  
     </script>
 
     <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
@@ -100,7 +105,7 @@
     @endauth
 
     <style>
-        .nodis { 
+        .nodis {
             display: none;
         }
     </style>

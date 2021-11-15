@@ -68,16 +68,16 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="font-size-h2 font-w700">{{ $reminders_count }}</dt>
-                        <dd class="text-muted mb-0">Reminders</dd>
+                        <dt class="font-size-h2 font-w700">{{ $notifications_count }}</dt>
+                        <dd class="text-muted mb-0">Notifications</dd>
                     </dl>
                     <div class="item item-rounded bg-body">
                         <i class="fa fa-bell font-size-h3 text-primary"></i>
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="{{ route('staff.reminders') }}">
-                        View all reminders
+                    <a class="font-w500 d-flex align-items-center" href="{{ route('staff.notification') }}">
+                        View all notifications
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
                     </a>
                 </div>
