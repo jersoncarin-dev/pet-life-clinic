@@ -51,10 +51,10 @@
                 <table class="table table-borderless table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="d-none d-sm-table-cell text-left" style="width: 200px">Owner</th>
+                            <th class="d-none d-sm-table-cell text-left" style="width: 300px">Owner</th>
                             <th class="d-none d-xl-table-cell text-left" style="width: 500px">Purpose</th>
                             <th class="d-none d-xl-table-cell text-left" style="width: 200px">Status</th>
-                            <th class="d-none d-xl-table-cell text-left" style="width: 200px">Date</th>
+                            <th class="d-none d-xl-table-cell text-left" style="width: 300px">Date</th>
                             <th class="d-none d-xl-table-cell text-left" style="width: 200px">Action</th>
                         </tr>
                     </thead>
